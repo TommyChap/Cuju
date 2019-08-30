@@ -1337,6 +1337,16 @@ struct kvm_shm_alloc_pages {
     unsigned int index1;    // index for the page array
     unsigned int index2;    // index inside the page array
 };
+// Tommy Zheng Begin
+struct kvmft_dirty_content
+{
+	__u32 package_no;
+	__u32 size;
+	bool is_dirty;
+	unsigned long long dirty_bitmap[1024];
+};
+#define KVMFT_GET_DIRTY              _IOWR(KVMIO,  0xf0, struct kvmft_dirty_content)
+// Tommy Zheng End
 #define KVM_SHM_ALLOC_PAGES       _IOW(KVMIO,  0xba, struct kvm_shm_alloc_pages)
 struct kvm_shm_free_pages {
   unsigned int pfn;

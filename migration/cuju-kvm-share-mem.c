@@ -1173,6 +1173,8 @@ void kvm_shmem_send_dirty_kernel(MigrationState *s)
 	put_off = kvm_vm_ioctl(kvm_state, KVM_GET_PUT_OFF, &cur_off);
 	//TODO kvmft_assert_ram_hash_and_dlist function should be moved to kernel space
     //kvmft_assert_ram_hash_and_dlist(dlist->pages, dlist->put_off);
+    // Moved to kernel space finish, but not with dlist cmpare
+    kvmft_get_ram_dirty_bitmap();   // Tommy Zheng
     s->dirty_pfns_len = put_off;
 
 #ifdef CONFIG_KVMFT_USERSPACE_TRANSFER
